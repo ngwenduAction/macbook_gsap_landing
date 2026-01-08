@@ -20,16 +20,29 @@ export default function MacbookModel16(props) {
 
     const texture = useTexture('/screen.png');
 
+export default function MacbookModel16(props) {
+    const { color } = useMacbookStore();
+    const { nodes, materials, scene } = useGLTF('/models/macbook-16-transformed.glb');
+    const colorableMeshesRef = React.useRef([]);
+
+    const texture = useTexture('/screen.png');
+
+    // Collect colorable meshes once on mount
     useEffect(() => {
+        colorableMeshesRef.current = [];
         scene.traverse((child) => {
-            if (child.isMesh) {
-                //     change color only if the part name is NOT noChangeParts
-                if (!noChangeParts.includes(child.name)) {
-                    child.material.color = new Color(color);
-                }
+            if (child.isMesh && !noChangeParts.includes(child.name)) {
+                colorableMeshesRef.current.push(child);
             }
-        })
-    }, [color, scene])
+        });
+    }, [scene]);
+
+    // Update colors only on stored meshes
+    useEffect(() => {
+        colorableMeshesRef.current.forEach((mesh) => {
+            mesh.material.color.set(color);
+        });
+    }, [color]);
 
   return (
     <group {...props} dispose={null}>
