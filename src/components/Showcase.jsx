@@ -47,10 +47,10 @@ const Showcase = () => {
                                 . M4 powers
                             </p>
                             <p>
-                                fdhfdfhfhfgh
+                                It drives Apple Intelligence on MacBook Pro, so you can write, create, and accomplish more with ease. All in a design that’s unbelievably thin, light, and powerful.
                             </p>
                             <p>
-                                dfhhhjfghdfhdg
+                                A brand-new display engine delivers breathtaking precision, color accuracy, and brightness. And a next-gen GPU with hardware-accelerated ray tracing brings console-level graphics to your fingertips.
                             </p>
                             <p className="text-primary">Learn more about Apple Intelligence</p>
                         </div>
